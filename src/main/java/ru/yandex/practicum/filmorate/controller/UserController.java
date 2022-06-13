@@ -2,69 +2,69 @@ package ru.yandex.practicum.filmorate.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.filmorate.exception.ValidationException;
-import ru.yandex.practicum.filmorate.exception.UserAlreadyExistException;
 import ru.yandex.practicum.filmorate.model.User;
+import ru.yandex.practicum.filmorate.service.UserService;
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.*;
-import java.util.regex.Pattern;
+
 
 @RestController
 @RequestMapping("/users")
 @Slf4j
 public class UserController {
-    private final Map<Long, User> users = new HashMap<>();
+
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public Collection<User> findAll() {
-        return users.values();
+        return userService.findAll();
     }
 
     @PostMapping
     public User create(@Valid @RequestBody User user) {
-        if(users.containsKey(user.getEmail())) {
-            throw new UserAlreadyExistException("Пользователь с электронной почтой " +
-                    user.getEmail() + " уже зарегистрирован.");
-        }
-        String checkUser = validationUser(user);
-        if(!(checkUser.isBlank())){
-            throw new ValidationException(checkUser);
-        }
-        if(user.getName() == null ||user.getName().isBlank()){
-            user.setName(user.getLogin());
-        }
-        user.setId(++User.countUser);
-        users.put(user.getId(), user);
-        return user;
+        return userService.addUser(user);
     }
 
     @PutMapping
     public User put(@RequestBody User user) {
-        String checkUser = validationUser(user);
-        if(!(checkUser.isBlank())){
-            throw new ValidationException(checkUser);
-        }
-        if(user.getId() < 1){
-            throw new ValidationException("не корректный id user");
-        }
-        users.put(user.getId(), user);
-        return user;
+        return userService.putUser(user);
     }
 
-
-
-    private String validationUser(User user){
-        List<String> result = new ArrayList<>();
-        if(Pattern.compile("\\s").matcher(user.getLogin()).find()){
-            result.add("Логин не может содержать пробелы");
-        }
-        if(LocalDate.now().isBefore(user.getBirthday())){
-            result.add("Дата рождения не может быть в будущем");
-        }
-        return String.join(", ", result);
+    @GetMapping("/{id}")
+    public User findById(@PathVariable long id) {
+        return userService.getUserById(id);
     }
+
+    @PutMapping("/{id}/friends/{friendId}")
+    public void putFriend(@PathVariable long id,
+                          @PathVariable long friendId) {
+        userService.addFriend(id, friendId);
+    }
+
+    @DeleteMapping("/{id}/friends/{friendId}")
+    public void deleteFriend(@PathVariable long id,
+                          @PathVariable long friendId) {
+        userService.deleteFriend(id, friendId);
+    }
+
+    @GetMapping("/{id}/friends")
+    public Collection<User> getFriends(@PathVariable long id) {
+        return userService.getFriends(id);
+    }
+
+    @GetMapping("/{id}/friends/common/{otherId}")
+    public Collection<User> getCommonFriends(@PathVariable long id,
+                                             @PathVariable long otherId) {
+        return userService.getCommonFriends(id, otherId);
+    }
+
 }
 
 
