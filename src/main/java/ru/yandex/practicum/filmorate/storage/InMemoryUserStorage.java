@@ -4,7 +4,9 @@ package ru.yandex.practicum.filmorate.storage;
 import org.springframework.stereotype.Component;
 import ru.yandex.practicum.filmorate.exception.UserIsMissingException;
 import ru.yandex.practicum.filmorate.model.User;
+
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -47,6 +49,24 @@ public class InMemoryUserStorage implements UserStorage {
     @Override
     public boolean containsIdUser(long idUser) {
         return usersKeyId.containsKey(idUser);
+    }
+
+    @Override
+    public void addFriend(User user, User friend) {
+        user.getFriends().add(friend.getId());
+    }
+
+    @Override
+    public Collection<User> getFriends(User user) {
+        return user.getFriends()
+                .stream()
+                .map(this::getUser)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteFriend(User user, User friend) {
+        user.getFriends().remove(friend.getId());
     }
 
 }

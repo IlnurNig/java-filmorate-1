@@ -1,0 +1,13 @@
+INSERT INTO MPA (mpa_id, mpa_name) VALUES ( 1, 'G' );
+INSERT INTO MPA (mpa_id, mpa_name) VALUES ( 2, 'PG' );
+INSERT INTO MPA (mpa_id, mpa_name) VALUES ( 3, 'PG-13' );
+INSERT INTO MPA (mpa_id, mpa_name) VALUES ( 4, 'R' );
+INSERT INTO MPA (mpa_id, mpa_name) VALUES ( 5, 'NC-17' );
+
+INSERT INTO GENRE(GENRE_ID, GENRE_NAME) VALUES ( 1, 'Комедия' );
+INSERT INTO GENRE(GENRE_ID, GENRE_NAME) VALUES ( 2, 'Драма' );
+INSERT INTO GENRE(GENRE_ID, GENRE_NAME) VALUES ( 3, 'Мультфильм' );
+INSERT INTO GENRE(GENRE_ID, GENRE_NAME) VALUES ( 4, 'Триллер' );
+INSERT INTO GENRE(GENRE_ID, GENRE_NAME) VALUES ( 5, 'Документальный' );
+INSERT INTO GENRE(GENRE_ID, GENRE_NAME) VALUES ( 6, 'Боевик' );
+

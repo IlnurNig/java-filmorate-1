@@ -4,6 +4,8 @@ package ru.yandex.practicum.filmorate.storage;
 import org.springframework.stereotype.Component;
 import ru.yandex.practicum.filmorate.exception.FilmIsMissingException;
 import ru.yandex.practicum.filmorate.model.Film;
+import ru.yandex.practicum.filmorate.model.User;
+
 import java.util.*;
 
 
@@ -55,6 +57,18 @@ public class InMemoryFilmStorage implements FilmStorage {
     @Override
     public boolean containsIdFilm(long idFilm) {
         return filmsKeyId.containsKey(idFilm);
+    }
+
+    @Override
+    public void addLike(Film film, User user) {
+        if (film.getLikes() == null)
+            film.setLikes(new HashSet<>());
+        film.getLikes().add(user.getId());
+    }
+
+    @Override
+    public void deleteLike(Film film, User user) {
+        film.getLikes().remove(user.getId());
     }
 
 }
