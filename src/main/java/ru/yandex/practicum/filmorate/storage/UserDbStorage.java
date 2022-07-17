@@ -2,6 +2,7 @@ package ru.yandex.practicum.filmorate.storage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -63,22 +64,13 @@ public class UserDbStorage implements UserStorage {
     @Override
     public User getUser(long idUser) {
         String sql = "SELECT * FROM USERS WHERE user_id=?";
-        User user = jdbcTemplate.query(sql, (rs, rowNum) -> makeUser(rs), new Object[]{idUser})
-                .stream()
-                .findAny()
-                .orElse(null);
-
+        User user = jdbcTemplate.queryForObject(sql, (rs, rowNum) -> makeUser(rs), idUser);
         return addFriendForUser(user);
     }
 
     public User getUser(String login) {
         String sql = "SELECT * FROM USERS WHERE login=?";
-
-        User user = jdbcTemplate.query(sql, (rs, rowNum) -> makeUser(rs), new Object[]{login})
-                .stream()
-                .findAny()
-                .orElse(null);
-
+        User user = jdbcTemplate.queryForObject(sql, (rs, rowNum) -> makeUser(rs), login);
         return addFriendForUser(user);
     }
 
@@ -95,20 +87,14 @@ public class UserDbStorage implements UserStorage {
 
     @Override
     public boolean containsEmailUser(String email) {
-        String sql = "SELECT * FROM USERS WHERE email=?";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> makeUser(rs), new Object[]{email})
-                .stream()
-                .findAny()
-                .isPresent();
+        String sql = "SELECT COUNT(*) FROM USERS WHERE email=?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, email) > 0;
     }
 
     @Override
     public boolean containsIdUser(long idUser) {
-        String sql = "SELECT * FROM USERS WHERE user_id=?";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> makeUser(rs), new Object[]{idUser})
-                .stream()
-                .findAny()
-                .isPresent();
+        String sql = "SELECT COUNT(*) FROM USERS WHERE user_id=?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, idUser) > 0;
     }
 
     @Override
@@ -135,9 +121,9 @@ public class UserDbStorage implements UserStorage {
     }
 
     @Override
-    public void deleteFriend(User user, User friend) {
+    public void deleteFriend(long idUser, long idFriend) {
         String sql = "DELETE FROM FRIENDS WHERE user_1=? AND user_2=?";
-        jdbcTemplate.update(sql, user.getId(), friend.getId());
+        jdbcTemplate.update(sql, idUser, idFriend);
     }
 
 

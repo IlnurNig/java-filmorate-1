@@ -43,7 +43,7 @@ public class FilmService {
             return filmStorage.getFilm(film.getName());
         }
         String checkFilm = validationFilm(film);
-        if (!(checkFilm.isBlank())) {
+        if (!checkFilm.isBlank()) {
             throw new ValidationFilmException(checkFilm);
         }
         return filmStorage.create(film);
@@ -55,10 +55,6 @@ public class FilmService {
             throw new ValidationFilmException(checkFilm);
         }
         validationIdFilm(film.getId());
-
-        if (!(film.getGenres() == null)) {
-            film.setGenres(new ArrayList<>(new LinkedHashSet<>(film.getGenres())));
-        }
 
         return filmStorage.put(film);
     }

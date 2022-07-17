@@ -16603,3 +16603,87 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/nigma/d
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:449)
 	... 46 more
+2022-07-17 10:27:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ [42000-212]
+2022-07-17 10:27:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ [42000-212]
+2022-07-17 10:27:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ WHERE film_id=? [42000-212]
+2022-07-17 10:27:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ WHERE film_id=? [42000-212]
+2022-07-17 10:27:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ WHERE film_id=? [42000-212]
+2022-07-17 10:27:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ [42000-212]
+2022-07-17 10:27:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ WHERE film_id=? [42000-212]
+2022-07-17 10:27:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ [42000-212]
+2022-07-17 10:27:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ WHERE film_id=? [42000-212]
+2022-07-17 10:27:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ WHERE film_id=? [42000-212]
+2022-07-17 10:27:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ WHERE film_id=? [42000-212]
+2022-07-17 10:27:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"
+Syntax error in SQL statement "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,\000a F.mpa_id, M.mpa_name\000a  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id[*]""\000a WHERE film_id=?"; SQL statement:
+SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,
+ F.mpa_id, M.mpa_name
+  FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id"
+ WHERE film_id=? [42000-212]

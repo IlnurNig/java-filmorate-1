@@ -24,10 +24,11 @@ import java.util.*;
 public class FilmDbStorage implements FilmStorage {
 
     private final JdbcTemplate jdbcTemplate;
-    private final StringBuilder sqlAllFilms = new StringBuilder()
-            .append("SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate,")
-            .append(" F.mpa_id, M.mpa_name")
-            .append(" FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id");
+    private final String sqlAllFilms = """
+            SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate, 
+            F.mpa_id, M.mpa_name 
+            FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id
+            """;
 
     @Autowired
     public FilmDbStorage(JdbcTemplate jdbcTemplate) {
@@ -56,7 +57,7 @@ public class FilmDbStorage implements FilmStorage {
         return film;
     }
 
-    private void addGenreFilms(List<Genre> genres, Long filmId) {
+    private void addGenreFilms(Collection<Genre> genres, Long filmId) {
         if (genres == null)
             return;
 
@@ -68,7 +69,7 @@ public class FilmDbStorage implements FilmStorage {
 
     @Override
     public Collection<Film> findAll() {
-        Collection<Film> films = jdbcTemplate.query(sqlAllFilms.toString(), (rs, rowNum) -> makeFilm(rs));
+        Collection<Film> films = jdbcTemplate.query(sqlAllFilms, (rs, rowNum) -> makeFilm(rs));
         for (Film film : films) {
             film = getGenreInFilm(film);
             film = getLikeInFilm(film);
@@ -102,11 +103,9 @@ public class FilmDbStorage implements FilmStorage {
     @Override
     public Film getFilm(long idFilm) {
         String sqlWhere = " WHERE film_id=?";
-        Film film = jdbcTemplate.query(sqlAllFilms.toString() + sqlWhere, (rs, rowNum) -> makeFilm(rs),
-                        new Object[]{idFilm})
-                .stream()
-                .findAny()
-                .orElse(null);
+        Film film = jdbcTemplate.queryForObject(sqlAllFilms + sqlWhere,(rs, rowNum) -> makeFilm(rs),
+                idFilm);
+
         film = getGenreInFilm(film);
         film = getLikeInFilm(film);
         return film;
@@ -115,11 +114,9 @@ public class FilmDbStorage implements FilmStorage {
     @Override
     public Film getFilm(String nameFilm) {
         String sqlWhere = " WHERE film_name=?";
-        Film film = jdbcTemplate.query(sqlAllFilms.toString() + sqlWhere, (rs, rowNum) -> makeFilm(rs),
-                        new Object[]{nameFilm})
-                .stream()
-                .findAny()
-                .orElse(null);
+        Film film = jdbcTemplate.queryForObject(sqlAllFilms + sqlWhere,(rs, rowNum) -> makeFilm(rs),
+                        nameFilm);
+
         film = getGenreInFilm(film);
         film = getLikeInFilm(film);
         return film;
@@ -129,13 +126,14 @@ public class FilmDbStorage implements FilmStorage {
         if (film == null)
             return null;
 
-        String sql = "SELECT G.genre_id, G.genre_name " +
-                "FROM FILMS as F " +
-                "INNER JOIN GENRE_FILMS as GF ON F.film_id=GF.film_id " +
-                "INNER JOIN GENRE as G ON GF.genre_id=G.genre_id " +
-                "WHERE F.film_id=?";
-        List<Genre> genres = jdbcTemplate.query(sql, (rs, rowNum) -> makeGenre(rs), new Object[]{film.getId()});
-        film.setGenres(genres);
+        String sql = """
+                SELECT G.genre_id, G.genre_name 
+                FROM FILMS as F 
+                INNER JOIN GENRE_FILMS as GF ON F.film_id=GF.film_id 
+                INNER JOIN GENRE as G ON GF.genre_id=G.genre_id 
+                WHERE F.film_id=?""";
+        Collection<Genre> genres = jdbcTemplate.query(sql, (rs, rowNum) -> makeGenre(rs), new Object[]{film.getId()});
+        film.setGenres(new LinkedHashSet<>(genres));
 
         return film;
     }
@@ -151,20 +149,14 @@ public class FilmDbStorage implements FilmStorage {
 
     @Override
     public boolean containsNameFilm(String nameFilm) {
-        String sql = "SELECT film_id FROM FILMS WHERE film_name=?";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> rs.getLong("film_id"), new Object[]{nameFilm})
-                .stream()
-                .findAny()
-                .isPresent();
+        String sql = "SELECT COUNT(*) FROM FILMS WHERE film_name=?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, nameFilm) > 0;
     }
 
     @Override
     public boolean containsIdFilm(long idFilm) {
-        String sql = "SELECT film_id FROM FILMS WHERE film_id=?";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> rs.getLong("film_id"), new Object[]{idFilm})
-                .stream()
-                .findAny()
-                .isPresent();
+        String sql = "SELECT COUNT(*) FROM FILMS WHERE film_id=?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, idFilm) > 0;
     }
 
     @Override

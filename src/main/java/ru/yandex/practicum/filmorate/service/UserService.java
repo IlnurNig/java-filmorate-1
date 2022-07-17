@@ -61,12 +61,12 @@ public class UserService {
     }
 
     public void addFriend(long idUser, long idFriend) {
-        User user = userStorage.getUser(idUser);
+        User user = getUserById(idUser);
         if (user == null) {
             throw new UserIsMissingException("the user with id=" + idUser + " is missing");
         }
 
-        User friend = userStorage.getUser(idFriend);
+        User friend = getUserById(idFriend);
         if (friend == null) {
             throw new UserIsMissingException("the user with id=" + idFriend + " is missing");
         }
@@ -75,15 +75,7 @@ public class UserService {
     }
 
     public void deleteFriend(long idUser, long idFriend) {
-        User user = userStorage.getUser(idUser);
-        if (user == null)
-            return;
-
-        User friend = userStorage.getUser(idFriend);
-        if (friend == null)
-            return;
-
-        userStorage.deleteFriend(user, friend);
+        userStorage.deleteFriend(idUser, idFriend);
     }
 
     public Collection<User> getFriends(long idUser) {
