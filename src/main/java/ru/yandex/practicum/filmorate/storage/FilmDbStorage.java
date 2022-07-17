@@ -24,11 +24,11 @@ import java.util.*;
 public class FilmDbStorage implements FilmStorage {
 
     private final JdbcTemplate jdbcTemplate;
-    private final String sqlAllFilms = """
-            SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate, 
-            F.mpa_id, M.mpa_name 
-            FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id
-            """;
+    private final String sqlAllFilms =
+            "SELECT F.film_id, F.film_name, F.description, F.release_date, F.duration, F.rate, " +
+            "F.mpa_id, M.mpa_name " +
+            "FROM FILMS as F LEFT JOIN MPA as M ON F.mpa_id=M.mpa_id";
+
 
     @Autowired
     public FilmDbStorage(JdbcTemplate jdbcTemplate) {
@@ -126,12 +126,12 @@ public class FilmDbStorage implements FilmStorage {
         if (film == null)
             return null;
 
-        String sql = """
-                SELECT G.genre_id, G.genre_name 
-                FROM FILMS as F 
-                INNER JOIN GENRE_FILMS as GF ON F.film_id=GF.film_id 
-                INNER JOIN GENRE as G ON GF.genre_id=G.genre_id 
-                WHERE F.film_id=?""";
+        String sql =
+                "SELECT G.genre_id, G.genre_name " +
+                "FROM FILMS as F " +
+                "INNER JOIN GENRE_FILMS as GF ON F.film_id=GF.film_id " +
+                "INNER JOIN GENRE as G ON GF.genre_id=G.genre_id " +
+                "WHERE F.film_id=?";
         Collection<Genre> genres = jdbcTemplate.query(sql, (rs, rowNum) -> makeGenre(rs), new Object[]{film.getId()});
         film.setGenres(new LinkedHashSet<>(genres));
 
