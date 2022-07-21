@@ -1,6 +1,12 @@
 {
 	"info": {
 <<<<<<< HEAD
+		"_postman_id": "3e285987-d223-42cb-95b6-34f7b9ca053e",
+		"name": "API Test Sprint 4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2036415"
+=======
+<<<<<<< HEAD
 		"_postman_id": "5bc299c1-f2a4-4e89-8ae7-26e06579ca77",
 		"name": "API Test Sprint 2",
 =======
@@ -8,6 +14,7 @@
 		"name": "API Test Sprint 1",
 >>>>>>> main
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+>>>>>>> main
 	},
 	"item": [
 		{
@@ -2355,12 +2362,7 @@
 									"});\r",
 									"pm.test(\"Test user friends\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.length).to.eql(1);\r",
-									"    pm.expect(jsonData[0].id).to.eql(1);\r",
-									"    pm.expect(jsonData[0].email).to.eql('mail@yandex.ru');\r",
-									"    pm.expect(jsonData[0].name).to.eql('est adipisicing');\r",
-									"    pm.expect(jsonData[0].login).to.eql('doloreUpdate');    \r",
-									"    pm.expect(jsonData[0].birthday).to.eql('1976-09-20');\r",
+									"    pm.expect(jsonData.length).to.eql(0);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3373,7 +3375,7 @@
 					]
 				},
 				{
-					"name": "Friend get 2 friends",
+					"name": "Friend get 1 friends",
 					"event": [
 						{
 							"listen": "test",
@@ -3384,7 +3386,12 @@
 									"});\r",
 									"pm.test(\"Test friend friends\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.length).to.eql(2);\r",
+									"    pm.expect(jsonData.length).to.eql(1);\r",
+									"    pm.expect(jsonData[0].id).to.eql(3);\r",
+									"    pm.expect(jsonData[0].email).to.eql('friend@common.ru');\r",
+									"    pm.expect(jsonData[0].name).to.eql('common');\r",
+									"    pm.expect(jsonData[0].login).to.eql('common');    \r",
+									"    pm.expect(jsonData[0].birthday).to.eql('2000-08-20');\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3578,6 +3585,11 @@
 									"pm.test(\"Test get common friend\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData.length).to.eql(1);\r",
+									"    pm.expect(jsonData[0].id).to.eql(3);\r",
+									"    pm.expect(jsonData[0].email).to.eql('friend@common.ru');\r",
+									"    pm.expect(jsonData[0].name).to.eql('common');\r",
+									"    pm.expect(jsonData[0].login).to.eql('common');    \r",
+									"    pm.expect(jsonData[0].birthday).to.eql('2000-08-20');\r",
 									"});\r",
 									""
 								],
@@ -4393,7 +4405,208 @@
 							"body": ""
 						}
 					]
+<<<<<<< HEAD
+				},
+				{
+					"name": "User get 1 friends",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Test user 2 friends\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.eql(1);\r",
+									"    pm.expect(jsonData[0].id).to.eql(3);\r",
+									"    pm.expect(jsonData[0].email).to.eql('friend@common.ru');\r",
+									"    pm.expect(jsonData[0].name).to.eql('common');\r",
+									"    pm.expect(jsonData[0].login).to.eql('common');    \r",
+									"    pm.expect(jsonData[0].birthday).to.eql('2000-08-20');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/:id/friends",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								":id",
+								"friends"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id/friends",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id",
+										"friends"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "-29029902",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id/friends",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id",
+										"friends"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "-29029902",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Conflict",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id/friends",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id",
+										"friends"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "-29029902",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id/friends",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id",
+										"friends"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "-29029902",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
 =======
+=======
+>>>>>>> main
 >>>>>>> main
 				}
 			]
@@ -4575,6 +4788,7 @@
 									"    pm.expect(jsonData.releaseDate).to.eql('1967-03-25');\r",
 >>>>>>> main
 									"    pm.expect(jsonData.duration).to.eql(100);\r",
+									"    pm.expect(jsonData.mpa.id).to.eql(1);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -4596,9 +4810,13 @@
 						"body": {
 							"mode": "raw",
 <<<<<<< HEAD
+							"raw": "{\n  \"name\": \"labore nulla\",\n  \"releaseDate\": \"1979-04-17\",\n  \"description\": \"Duis in consequat esse\",\n  \"duration\": 100,\n  \"rate\": 4,\n  \"mpa\": { \"id\": 1}\n}",
+=======
+<<<<<<< HEAD
 							"raw": "{\n  \"name\": \"labore nulla\",\n  \"releaseDate\": \"1979-04-17\",\n  \"description\": \"Duis in consequat esse\",\n  \"duration\": 100,\n  \"rate\": 4\n}",
 =======
 							"raw": "{\n  \"name\": \"nisi eiusmod\",\n  \"description\": \"adipisicing\",\n  \"releaseDate\": \"1967-03-25\",\n  \"duration\": 100\n}",
+>>>>>>> main
 >>>>>>> main
 							"options": {
 								"raw": {
@@ -5115,6 +5333,91 @@
 					]
 				},
 				{
+					"name": "Film create Fail MPA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500 or 400\", function () {\r",
+									"     pm.expect(pm.response.code).to.be.oneOf([500,400]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Name\",\n  \"description\": \"Descrition\",\n  \"releaseDate\": \"1980-03-25\",\n  \"duration\": 200,\n  \"mpa\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/films",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"films"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"nisi eiusmod\",\n  \"id\": -7113753,\n  \"description\": \"adipisicing\",\n  \"releaseDate\": \"1967-03-25\",\n  \"duration\": 33722088\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/films",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"films"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
 					"name": "Film update",
 					"event": [
 						{
@@ -5131,6 +5434,7 @@
 									"    pm.expect(jsonData.description).to.eql('New film update decription');    \r",
 									"    pm.expect(jsonData.releaseDate).to.eql('1989-04-17');\r",
 									"    pm.expect(jsonData.duration).to.eql(190);\r",
+									"    pm.expect(jsonData.mpa.id).to.eql(5);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -5151,7 +5455,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": 1,\n  \"name\": \"Film Updated\",\n  \"releaseDate\": \"1989-04-17\",\n  \"description\": \"New film update decription\",\n  \"duration\": 190,\n  \"rate\": 4\n}",
+							"raw": "{\n  \"id\": 1,\n  \"name\": \"Film Updated\",\n  \"releaseDate\": \"1989-04-17\",\n  \"description\": \"New film update decription\",\n  \"duration\": 190,\n  \"rate\": 4,\n  \"mpa\": { \"id\": 5}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5357,7 +5661,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": -1,\n  \"name\": \"Film Updated\",\n  \"releaseDate\": \"1989-04-17\",\n  \"description\": \"New film update decription\",\n  \"duration\": 190,\n  \"rate\": 4\n}",
+							"raw": "{\n  \"id\": -1,\n  \"name\": \"Film Updated\",\n  \"releaseDate\": \"1989-04-17\",\n  \"description\": \"New film update decription\",\n  \"duration\": 190,\n  \"mpa\": { \"id\": 5}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5612,6 +5916,7 @@
 									"    pm.expect(jsonData.description).to.eql('New film about friends');    \r",
 									"    pm.expect(jsonData.releaseDate).to.eql('1999-04-30');\r",
 									"    pm.expect(jsonData.duration).to.eql(120);\r",
+									"    pm.expect(jsonData.mpa.id).to.eql(3);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -5632,7 +5937,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"New film\",\n  \"releaseDate\": \"1999-04-30\",\n  \"description\": \"New film about friends\",\n  \"duration\": 120,\n  \"rate\": 4\n}",
+							"raw": "{\n  \"name\": \"New film\",\n  \"releaseDate\": \"1999-04-30\",\n  \"description\": \"New film about friends\",\n  \"duration\": 120,\n  \"rate\": 4,\n  \"mpa\": { \"id\": 3}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5813,6 +6118,16 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Test get film\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(1);\r",
+									"    pm.expect(jsonData.name).to.eql('Film Updated');\r",
+									"    pm.expect(jsonData.description).to.eql('New film update decription');    \r",
+									"    pm.expect(jsonData.releaseDate).to.eql('1989-04-17');\r",
+									"    pm.expect(jsonData.duration).to.eql(190);\r",
+									"    pm.expect(jsonData.mpa.id).to.eql(5);\r",
+									"    pm.expect(jsonData.mpa.name).not.null;\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -6414,6 +6729,7 @@
 									"    pm.expect(jsonData[0].description).to.eql('New film about friends');    \r",
 									"    pm.expect(jsonData[0].releaseDate).to.eql('1999-04-30');\r",
 									"    pm.expect(jsonData[0].duration).to.eql(120);\r",
+									"    pm.expect(jsonData[0].mpa.id).to.eql(3);\r",
 									"});"
 								],
 								"type": "text/javascript"

@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.service.UserService;
-import javax.validation.Valid;
+
+//import javax.validation.Valid;
 import java.util.*;
 
 
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User create(@Valid @RequestBody User user) {
+    public User create(@RequestBody User user) {
         return userService.addUser(user);
     }
 
@@ -50,7 +51,7 @@ public class UserController {
 
     @DeleteMapping("/{id}/friends/{friendId}")
     public void deleteFriend(@PathVariable long id,
-                          @PathVariable long friendId) {
+                             @PathVariable long friendId) {
         userService.deleteFriend(id, friendId);
     }
 
